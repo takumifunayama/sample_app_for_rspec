@@ -12,4 +12,6 @@ class User < ApplicationRecord
   def my_object?(object)
     object.user_id == id
   end
+  
+  validates :email, uniqueness: true, presence: true
 end
