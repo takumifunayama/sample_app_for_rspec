@@ -49,13 +49,9 @@ RSpec.describe User, type: :system do
     end
 
     describe 'ログイン後' do
-      before { login_as(user) }
+      before {login(user)}
         describe 'ユーザー編集' do
           context 'フォームの入力値が正常' do
-            login_as(user)
-            
-            binding.pry
-            
             visit edit_user_path(user)
             fill_in "Email",	with: "test@example.com" 
             fill_in "Password",	with: "pass"
@@ -65,7 +61,6 @@ RSpec.describe User, type: :system do
             expect(page).to have_content 'User was successfully updated.'
           end
           context 'メールアドレス未入力' do
-            login_as(user)
             visit edit_user_path(user)
             fill_in "Email",	with: nil 
             fill_in "Password",	with: "password"
@@ -75,7 +70,6 @@ RSpec.describe User, type: :system do
             expect(page).to have_content "Email can't be blank"
           end
           context '登録済メールアドレスを使用' do
-            login_as(user)
             visit edit_user_path(user)
             fill_in "Email",	with: user.email
             fill_in "Password",	with: "password"
