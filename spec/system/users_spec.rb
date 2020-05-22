@@ -49,7 +49,7 @@ RSpec.describe User, type: :system do
     end
 
     describe 'ログイン後' do
-      before { login_as(user) }
+      before { login(user) }
         describe 'ユーザー編集' do
           context 'フォームの入力値が正常' do
             visit edit_user_path(user)
