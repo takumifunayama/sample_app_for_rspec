@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :system do
-  let(:user) {create(:user)}
-  let(:other_user) {create(:user)}
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user) }
 
   describe 'CRUD確認' do
     describe 'ログイン前' do
@@ -49,7 +49,7 @@ RSpec.describe User, type: :system do
     end
 
     describe 'ログイン後' do
-      before {login(user)}
+      before { login_as(user) }
         describe 'ユーザー編集' do
           context 'フォームの入力値が正常' do
             visit edit_user_path(user)
